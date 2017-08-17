@@ -26,7 +26,7 @@ function ssc_member_pages_init() {
 			'page-attributes',
 		)
 	);
-	register_post_type( 'member-pages', $args );
+	register_post_type( 'member-page', $args );
 }
 
 add_action( 'init', 'ssc_member_pages_init' );

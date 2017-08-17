@@ -30,11 +30,11 @@ function ssc_members_section_callback() {
 		echo sprintf( "<a href='%s'>edit</a>",
 			admin_url( 'options-general.php' ) );
 
-		$count_posts = wp_count_posts( 'member-pages' );
+		$count_posts = wp_count_posts( 'member-page' );
 		if ( is_object( $count_posts ) && isset( $count_posts->publish ) ) {
 			echo sprintf( '<p>%d published <a href="%s">member pages</a></p>',
 				$count_posts->publish,
-				admin_url( 'edit.php?post_type=member-pages' )
+				admin_url( 'edit.php?post_type=member-page' )
 			);
 		}
 	}

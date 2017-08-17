@@ -32,12 +32,16 @@ function ssc_member_handle_redirects() {
 		return;
 	}
 
-	$slug = basename( get_permalink() );
+	$permalink = get_permalink();
+
+
+	$url_parts = explode( "/", parse_url( $permalink, PHP_URL_PATH ) );
 
 	// @var WP_POST $post
 	global $post;
 
-	if ( $slug == 'members' || ( is_singular( $post ) && ssc_member_is_private_post( $post ) ) ) {
+	// @todo check for a more robust way to do this.
+	if ( $url_parts[1] == 'members' || ( is_singular( $post ) && ssc_member_is_private_post( $post ) ) ) {
 		wp_redirect( wp_login_url() . '?mbo=1' );
 	}
 }

@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Add a privacy setting to post pages
+ * 
+ * @todo, make screen types configurable from a settings page
+ */
 function ssc_members_add_post_privacy_setting() {
 	add_meta_box(
 		'ssc_members_post_privacy', // id
@@ -18,6 +22,7 @@ function ssc_members_render_post_privacy_box() {
 	// @var WP_Post $post;
 	global $post;
 
+	// @todo tidy
 	$post_meta_values = get_post_custom( $post->ID );
 
 	$privacy_value = ( isset( $post_meta_values['ssc_members_post_privacy'] ) &&
@@ -26,7 +31,6 @@ function ssc_members_render_post_privacy_box() {
 	)
 		?
 		esc_attr( $post_meta_values['ssc_members_post_privacy'][0] ) : false;
-
 
 	wp_nonce_field( 'my_delete_action', 'ssc_wpnonce' );
 	?>

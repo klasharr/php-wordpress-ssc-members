@@ -1,31 +1,26 @@
 <?php
 /**
- * @todo change this to checking against existence of a meta key
- * @see post_meta_box.php
- * 
- * @param $query
+ * @see inc/post_meta_box.php
+ *
+ * @todo exclude member pages from search IF logged out.
+ *
+ * @param WP_Query $query
  */
-function exclude_single_posts_home( $query ) {
+function ssc_member_exclude_private_posts( $query ) {
 
 	if ( is_user_logged_in() ) {
 		return;
 	}
 
-	$privacy_term_id = get_option( 'ssc_member_privacy_term', 0 );
-	if ( 0 == $privacy_term_id ) {
-		return;
-	}
-
-	$query->set( 'tax_query',
+	// @todo check for a more efficient way to do this
+	$query->set( 'meta_query',
 		array(
 			array(
-				'taxonomy' => SSC_MEMBERS_PRIVACY_TAXONOMY,
-				'field'    => 'id',
-				'terms'    => array( $privacy_term_id ),
-				'operator' => 'NOT IN'
+				'key'     => 'ssc_members_post_privacy',
+				'compare' => 'NOT EXISTS',
 			)
 		)
 	);
 }
 
-add_action( 'pre_get_posts', 'exclude_single_posts_home' );
+add_action( 'pre_get_posts', 'ssc_member_exclude_private_posts' );

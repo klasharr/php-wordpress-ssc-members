@@ -18,7 +18,9 @@ function ssc_member_is_private_post( WP_Post $post ) {
 	
 }
 
-
+/**
+ * @return mixed|void
+ */
 function ssc_member_is_debug_mode(){
 	return get_option( 'ssc_member_debug_mode', false );
 }
