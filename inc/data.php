@@ -1,6 +1,8 @@
 <?php
 /**
- * @todo change this to checking against existence of a meta value
+ * @todo change this to checking against existence of a meta key
+ * @see post_meta_box.php
+ * 
  * @param $query
  */
 function exclude_single_posts_home( $query ) {

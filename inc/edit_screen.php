@@ -15,7 +15,7 @@ function ssc_member_edit_screen_message() {
 
 	if ( $screen->post_type == 'post' &&
 	     $screen->id == 'post' &&
-	     has_term( $privacy_term_id, SSC_MEMBERS_PRIVACY_TAXONOMY, $post )
+	     ssc_member_is_private_post( $post )
 	) {
 
 		echo "<div style='background-color: red; color: white; padding: 0.2em; text-align: center;'>Members only</div>";

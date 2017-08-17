@@ -37,14 +37,14 @@ function ssc_members_settings_api_init() {
 
 	add_settings_section(
 		'ssc_member_user_settings_section', // Section ID
-		_e('Member settings', 'ssc_member' ), // Title
+		__('Member settings', 'ssc_member' ), // Title
 		'ssc_member_setting_section_callback', // Callback to render descripton
 		'general' // Menu page, matching menu slug
 	);
 
 	add_settings_field(
 		'ssc_member_generic_user', // Field ID
-		_e('Generic User','ssc_member' ), // Title
+		__('Generic User','ssc_member' ), // Title
 		'ssc_member_setting_field_generic_user_callback', // Callback
 		'general', // Page (menu slug)
 		'ssc_member_user_settings_section' // Section ID of settings page in which to show the field
@@ -52,7 +52,7 @@ function ssc_members_settings_api_init() {
 
 	add_settings_field(
 		'ssc_member_debug_mode', // Field ID
-		_e('Debug mode', 'ssc_member' ),// Title
+		__('Debug mode', 'ssc_member' ),// Title
 		'ssc_member_setting_field_debug_callback', // Callback
 		'general', // Page (menu slug)
 		'ssc_member_user_settings_section' // Section ID of settings page in which to show the field
@@ -60,7 +60,7 @@ function ssc_members_settings_api_init() {
 
 	add_settings_field(
 		'ssc_member_privacy_term', // Field ID
-		_e('Privacy term', 'ssc_member' ),// Title
+		__('Privacy term', 'ssc_member' ),// Title
 		'ssc_member_setting_field_privacy_term_callback', // Callback
 		'general', // Page (menu slug)
 		'ssc_member_user_settings_section' // Section ID of settings page in which to show the field

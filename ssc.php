@@ -8,7 +8,6 @@
  Author URI: https://klaus.blog
  */
 
-define( 'SSC_MEMBERS_PRIVACY_TAXONOMY', 'post_tag' );
 define( 'SSC_MEMBERS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SSC_MEMBERS_PLUGIN_FILE', __FILE__ );
 
@@ -22,6 +21,7 @@ include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/menu.php' );
 include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/users.php' );
 include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/post_types.php' );
 include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/utilities.php' );
+include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/post_meta_box.php' );
 
 /**
  * Redirect the user to a login screen if he/she tries to access member content.
@@ -87,6 +87,3 @@ function ssc_members_comments_open( $open, $post_id ) {
 }
 
 add_filter( 'comments_open', 'ssc_members_comments_open', 10, 2 );
-
-
-

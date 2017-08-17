@@ -14,9 +14,8 @@ function is_generic_member_user() {
  */
 function ssc_member_is_private_post( WP_Post $post ) {
 
-	$privacy_term_id = get_option( 'ssc_member_privacy_term', 0 );
-
-	return has_term( $privacy_term_id, SSC_MEMBERS_PRIVACY_TAXONOMY, $post );
+	return 'on' == get_metadata('post', $post->ID, 'ssc_members_post_privacy', true ) ? true : false;
+	
 }
 
 
