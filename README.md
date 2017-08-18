@@ -1,6 +1,6 @@
 # SSC Members
 
-A plugin to help you build a members area on a website with an optional generic user that could be shared between people.
+A WordPress plugin to help you build a members area on a website with an optional generic user that could be shared between people.
 
 ## Background
 
