@@ -87,7 +87,7 @@ function ssc_member_setting_field_generic_user_callback() {
 	echo '<select name="ssc_member_generic_user" id="ssc_member_generic_user">';
 	echo ssc_member_get_non_admin_users_select_options_html();
 	echo '</select>';
-	echo sprint('<p>%s</p>', _e( 'Choose a user to be the generic member. Only subscriber roles are 
+	echo sprintf('<p>%s</p>', _e( 'Choose a user to be the generic member. Only subscriber roles are 
 	allowed', 'ssc_member' ));
 }
 

@@ -10,12 +10,27 @@
  * @return string
  */
 function ssc_member_section_primary_nav_menu( $args = '' ) {
-	if ( is_user_logged_in() && $args['id'] == 'top-logged-out' ) {
+
+	if($args['theme_location'] != 'primary'){
+		return;
+	}
+
+	//print_r(wp_get_nav_menu_object('primary'));
+
+	//$menus = get_registered_nav_menus();
+	//if(!empty($menus) && is_array($menus)){
+	//	$primary_menu_name = $menus['primary'];
+	//}
+
+	if ( is_user_logged_in() ) {
 		$args['menu'] = 'top-logged-in';
+	} else {
+		$args['menu'] = 'top-logged-out';
 	}
 
 	return $args;
 }
+
 
 add_filter( 'wp_nav_menu_args', 'ssc_member_section_primary_nav_menu' );
 
