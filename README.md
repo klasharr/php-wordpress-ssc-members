@@ -8,11 +8,12 @@ I am in the process of migrating [http://www.swanagesailingclub.org.uk/](http://
 
 ## What it does
 
-1. Lets you choose on subscriber role user to be your generic user. This user does not see any profile or admin pages and can not request a password reset
+1. Lets you choose a subscriber role user to be your generic user. This user does not see any profile or admin pages and can not request a password reset
 2. Adds a new post type for member pages which has /members as the base URL segment
 3. Adds a 'Members only' flag to the post edit pages
-4. Lets you display logged in and logged out versions of the primary menu depending on session state. Currently the names of the menus are hardcoded.
-5. Prevents member pages or private posts appearing anywhere when logged out.
+4. Lets you display logged in and logged out versions of the primary menu depending on session state. Currently the names of the menus are hardcoded
+5. Prevents member pages or private posts appearing anywhere when logged out
+6. Adds a switchable debug mode which adds a red bar on member only posts or pages
 
 ## Do you have a demo?
 
@@ -23,4 +24,8 @@ pass: a
 
 ## Can I use it?
 
-Not yet, it's still very early days.
+Not yet, it's still very early days. I will complete and publish it.
+
+## Can I request a feature?
+
+Yes. Reach me at: [https://klaus.blog/contact/](https://klaus.blog/contact/) or raise an issue.
