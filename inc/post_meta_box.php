@@ -35,7 +35,7 @@ function ssc_members_render_post_privacy_box() {
 }
 
 
-function cd_meta_box_save( $post_id ) {
+function ssc_members_meta_box_save( $post_id ) {
 
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
@@ -59,4 +59,4 @@ function cd_meta_box_save( $post_id ) {
 	}
 }
 
-add_action( 'save_post', 'cd_meta_box_save' );
+add_action( 'save_post', 'ssc_members_meta_box_save' );
