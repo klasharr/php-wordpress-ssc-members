@@ -75,11 +75,13 @@ function ssc_member_setting_section_callback() {
 
 function ssc_member_setting_field_generic_user_callback() {
 
+	//print_r(get_settings_errors());
+
 	echo '<select name="ssc_member_generic_user" id="ssc_member_generic_user">';
 	echo ssc_member_get_non_admin_users_select_options_html();
 	echo '</select>';
 	echo sprintf( '<p>%s</p>', esc_html__( 'Choose a user to be the generic member. Only subscriber roles are 
-	allowed', 'ssc_member' ) );
+	allowed.', 'ssc_member' ) );
 }
 
 function ssc_member_setting_field_debug_callback() {
@@ -104,6 +106,9 @@ function ssc_member_setting_field_generic_user_validate( $input ) {
 		return false;
 	}
 
+	/**
+	 * @todo Prevent any role other than subscriber being used.
+	 */
 	// Do not set the admin up as a generic user
 	if ( 1 == $input ) {
 		add_settings_error( 'general', 'ssc_member_generic_user', esc_html__( 'Invalid action' ),

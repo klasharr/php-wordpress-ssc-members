@@ -5,18 +5,10 @@
  */
 function ssc_member_edit_screen_message() {
 
-	// @var WP_Post $post;
-	global $post;
-
 	// @var WP_Screen $screen
 	$screen = get_current_screen();
 
-	$privacy_term_id = get_option( 'ssc_member_privacy_term', 0 );
-
-	if ( $screen->post_type == 'post' &&
-	     $screen->id == 'post' &&
-	     ssc_member_is_private_post( $post )
-	) {
+	if ( ssc_member_is_debug_mode() && ( $screen->post_type == 'member-page' || ssc_member_is_editing_private_post() ) ) {
 
 		echo sprintf( "<div style='background-color: red; color: white; padding: 0.2em; text-align: center;'>%s</div>", esc_html__( 'Members only' ) );
 	}

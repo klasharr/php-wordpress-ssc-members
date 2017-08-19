@@ -19,9 +19,21 @@ function ssc_member_is_private_post( WP_Post $post ) {
 }
 
 /**
- * @return mixed|void
+ * @return bool
  */
 function ssc_member_is_debug_mode(){
-	return get_option( 'ssc_member_debug_mode', false );
+	return (bool) get_option( 'ssc_member_debug_mode', false );
 }
 
+function ssc_member_is_editing_private_post() {
+
+	// @var WP_Post $post;
+	global $post;
+
+	// @var WP_Screen $screen
+	$screen = get_current_screen();
+
+	if( $screen->post_type == 'post' && $screen->id == 'post' && ssc_member_is_private_post( $post ) ) {
+		return true;
+	}
+}
