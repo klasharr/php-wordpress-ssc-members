@@ -24,7 +24,7 @@ function ssc_members_render_post_privacy_box() {
 
 	$privacy_value = ssc_member_get_post_privacy_value( $post );
 
-	wp_nonce_field( 'my_delete_action', 'ssc_wpnonce' );
+	wp_nonce_field( 'ssc_members_action', 'ssc_wpnonce' );
 	?>
 	<p>
 		<input type="checkbox" id="ssc_members_post_privacy"
@@ -42,7 +42,7 @@ function ssc_members_meta_box_save( $post_id ) {
 	}
 	$retrieved_nonce = $_REQUEST['ssc_wpnonce'];
 
-	if ( ! wp_verify_nonce( $retrieved_nonce, 'my_delete_action' ) ) {
+	if ( ! wp_verify_nonce( $retrieved_nonce, 'ssc_members_action' ) ) {
 		return;
 	}
 
