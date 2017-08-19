@@ -7,7 +7,7 @@
 function ssc_members_add_post_privacy_setting() {
 	add_meta_box(
 		'ssc_members_post_privacy', // id
-		'Members only', // title
+		esc_html__('Members only'), // title
 		'ssc_members_render_post_privacy_box', // rendering callback
 		'post', // which screen to display on
 		'normal', // display context (normal, side, advanced)
@@ -44,7 +44,7 @@ function ssc_members_render_post_privacy_box() {
 
 
 function cd_meta_box_save( $post_id ) {
-
+	
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}

@@ -46,9 +46,9 @@ add_filter( 'wp_nav_menu_args', 'ssc_member_section_primary_nav_menu' );
 function ssc_member_loginout_menu_link( $items, $args ) {
 	if ( $args->theme_location == 'primary' ) {
 		if ( is_user_logged_in() ) {
-			$items .= '<li class="right"><a href="' . wp_logout_url() . '">' . __( "Log Out" ) . '</a></li>';
+			$items .= '<li class="right"><a href="' . wp_logout_url() . '">' . esc_html__( "Log Out" ) . '</a></li>';
 		} else {
-			$items .= '<li class="right"><a href="' . wp_login_url( get_permalink() ) . '">' . __( "Log In" ) . '</a></li>';
+			$items .= '<li class="right"><a href="' . wp_login_url( get_permalink() ) . '">' . esc_html__( "Log In" ) . '</a></li>';
 		}
 	}
 

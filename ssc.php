@@ -41,7 +41,6 @@ function ssc_member_handle_redirects() {
 	// @var WP_POST $post
 	global $post;
 
-	// @todo check for a more robust way to do this.
 	if ( !is_search() && $url_parts[1] == SSC_MEMBERS_SLUG || ( is_singular( $post ) && ssc_member_is_private_post( $post ) ) ) {
 		wp_redirect( wp_login_url() . '?mbo=1' );
 	}

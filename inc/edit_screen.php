@@ -18,7 +18,7 @@ function ssc_member_edit_screen_message() {
 	     ssc_member_is_private_post( $post )
 	) {
 
-		echo "<div style='background-color: red; color: white; padding: 0.2em; text-align: center;'>Members only</div>";
+		echo sprintf( "<div style='background-color: red; color: white; padding: 0.2em; text-align: center;'>%s</div>", esc_html__( 'Members only' ) );
 	}
 }
 
