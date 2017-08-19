@@ -6,11 +6,12 @@
  Author: Klaus Harris
  Version: -1
  Author URI: https://klaus.blog
+ Text Domain: ssc-members
  */
 
 define( 'SSC_MEMBERS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SSC_MEMBERS_PLUGIN_FILE', __FILE__ );
-
+define( 'SSC_MEMBERS_SLUG', esc_html__('members'));
 
 include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/admin.php' );
 include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/dashboard_widgets.php' );
@@ -41,7 +42,7 @@ function ssc_member_handle_redirects() {
 	global $post;
 
 	// @todo check for a more robust way to do this.
-	if ( $url_parts[1] == 'members' || ( is_singular( $post ) && ssc_member_is_private_post( $post ) ) ) {
+	if ( !is_search() && $url_parts[1] == SSC_MEMBERS_SLUG || ( is_singular( $post ) && ssc_member_is_private_post( $post ) ) ) {
 		wp_redirect( wp_login_url() . '?mbo=1' );
 	}
 }
@@ -67,7 +68,7 @@ add_action( 'wp', 'ssc_member_admin_bar_visibility' );
  * @return string
  */
 function ssc_members_robots_override( $output ) {
-	$output .= "Disallow: /members/*\n";
+	$output .= sprintf("Disallow: /%s/*\n", SSC_MEMBERS_SLUG);
 
 	return $output;
 }

@@ -7,12 +7,12 @@
  */
 function ssc_member_pages_init() {
 	$args = array(
-		'label'             => 'Member pages',
+		'label'             => esc_html__('Member pages'),
 		'public'            => true,
 		'show_ui'           => true,
 		'capability_type'   => 'post',
 		'hierarchical'      => false,
-		'rewrite'           => array( 'slug' => 'members' ),
+		'rewrite'           => array( 'slug' => SSC_MEMBERS_SLUG),
 		'query_var'         => true,
 		'menu_icon'         => 'dashicons-admin-page',
 		'show_in_nav_menus' => true,
