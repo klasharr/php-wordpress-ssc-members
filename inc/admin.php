@@ -6,7 +6,7 @@
 function admin_init_function() {
 
 	// is_admin() is a check for accessing admin pages, not checking for the admin role
-	if ( is_generic_member_user() && is_admin() ) {
+	if ( ssc_member_is_generic_member_user() && is_admin() ) {
 		wp_redirect( get_home_url() );
 	}
 }
@@ -44,7 +44,7 @@ function ssc_members_settings_api_init() {
 
 	add_settings_field(
 		'ssc_member_generic_user', // Field ID
-		esc_html__( 'Generic User','ssc_member' ), // Title
+		esc_html__( 'Generic User', 'ssc_member' ), // Title
 		'ssc_member_setting_field_generic_user_callback', // Callback
 		'general', // Page (menu slug)
 		'ssc_member_user_settings_section' // Section ID of settings page in which to show the field
@@ -90,17 +90,16 @@ function ssc_member_setting_field_debug_callback() {
 }
 
 
-
 // ------------ Validation ------------
 
-function ssc_member_setting_field_generic_user_validate( $input ) {
+function ssc_member_setting_field_generic_user_validate( $user_id ) {
 
-	if ( ! is_numeric( $input ) ) {
+	if ( ! is_numeric( $user_id ) ) {
 		return;
 	}
 
 	// If none was selected clean up the option and prevent saving of the new value
-	if ( - 1 == $input ) {
+	if ( - 1 == $user_id ) {
 		delete_option( 'ssc_member_generic_user' );
 
 		return false;
@@ -110,20 +109,36 @@ function ssc_member_setting_field_generic_user_validate( $input ) {
 	 * @todo Prevent any role other than subscriber being used.
 	 */
 	// Do not set the admin up as a generic user
-	if ( 1 == $input ) {
+	if ( 1 == $user_id ) {
 		add_settings_error( 'general', 'ssc_member_generic_user', esc_html__( 'Invalid action' ),
 			'error' );
 
 		return;
 	}
 
-	return $input;
+	/** @var WP_User $user */
+	$user = get_userdata( $user_id );
+	if ( empty( $user ) ) {
+		add_settings_error( 'general', 'ssc_member_generic_user', esc_html__( sprintf( 'User %d does not exist.', $user_id ) ), 'error' );
+
+		return;
+	}
+
+	if ( !ssc_member_user_is_only_subscriber( $user ) ) {
+		add_settings_error( 'general', 'ssc_member_generic_user',
+			esc_html__( sprintf( 'User %s does not have exclusively a subscriber role.', $user->user_login ) ), 'error' );
+
+		return;
+	}
+
+	return $user_id;
 }
 
 
 function ssc_member_debug_mode_validate( $input ) {
-	if( !is_numeric( $input )) {
+	if ( ! is_numeric( $input ) ) {
 		return;
 	}
+
 	return $input;
 }

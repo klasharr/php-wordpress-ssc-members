@@ -12,7 +12,7 @@ function ssc_member_pages_init() {
 		'show_ui'           => true,
 		'capability_type'   => 'post',
 		'hierarchical'      => false,
-		'rewrite'           => array( 'slug' => SSC_MEMBERS_SLUG),
+		'rewrite'           => array( 'slug' => SSC_MEMBERS_SLUG_BASE_SEGMENT),
 		'query_var'         => true,
 		'menu_icon'         => 'dashicons-admin-page',
 		'show_in_nav_menus' => true,

@@ -1,6 +1,8 @@
 <?php
 
 // @todo remove generic user access if user role changes from subscriber
+// https://codex.wordpress.org/Plugin_API/Action_Reference/profile_update
+
 
 /**
  * option clean up
@@ -52,25 +54,33 @@ function ssc_member_get_non_admin_users_select_options_html() {
 		)
 	);
 
-	$out = '<option value="-1">none</option>';
+	$out = sprintf( '<option value="-1">%s</option>', esc_html__( 'none' ) );
 
 	if ( ! is_array( $users ) || empty( $users ) ) {
 		return $out;
 	}
 
-	$option = get_option( 'ssc_member_generic_user', 0 );
+	$option = (int) get_option( 'ssc_member_generic_user', 0 );
 
-	foreach ( $users as $obj ) {
+	/** @var WP_User $user */
+	foreach ( $users as $user ) {
+
+		// The user should have the subscriber role exclusively
+		if ( ! ssc_member_user_is_only_subscriber( $user ) ) {
+			continue;
+		}
+
 		$out .= sprintf( '<option value="%d" %s>%s</option>',
-			$obj->ID,
-			$option == $obj->ID ? 'selected' : '',
-			$obj->user_login );
+			$user->ID,
+			$option == $user->ID ? 'selected' : '',
+			$user->user_login );
 	}
 
 	return $out;
 }
 
 
+// Detect redirection from member only content.
 if ( ! empty( $_GET['mbo'] ) && 1 === (int) $_GET['mbo'] ) {
 
 	function custom_login_message() {

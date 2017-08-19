@@ -39,6 +39,7 @@ function ssc_member_search_modifications( $args, $post_type ) {
 	}
 
 	$args['exclude_from_search'] = true;
+
 	return $args;
 }
 

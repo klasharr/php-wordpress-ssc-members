@@ -11,7 +11,7 @@
 
 define( 'SSC_MEMBERS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SSC_MEMBERS_PLUGIN_FILE', __FILE__ );
-define( 'SSC_MEMBERS_SLUG', esc_html__('members'));
+define( 'SSC_MEMBERS_SLUG_BASE_SEGMENT', esc_html__( 'members' ) );
 
 include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/admin.php' );
 include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/dashboard_widgets.php' );
@@ -29,19 +29,25 @@ include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/post_meta_box.php' );
  */
 function ssc_member_handle_redirects() {
 
-	if ( is_user_logged_in() ) {
+	if ( is_user_logged_in() || is_search() ) {
 		return;
 	}
 
 	$permalink = get_permalink();
-
 
 	$url_parts = explode( "/", parse_url( $permalink, PHP_URL_PATH ) );
 
 	// @var WP_POST $post
 	global $post;
 
-	if ( !is_search() && $url_parts[1] == SSC_MEMBERS_SLUG || ( is_singular( $post ) && ssc_member_is_private_post( $post ) ) ) {
+	/*
+	 * If we exclude content at a query level, @post will be empty for non valid queries therefore
+	 * this will only raise a warning
+	 * // ( is_singular( $post ) && ssc_member_is_private_post( $post ) ) ||
+	 *
+	 * @todo tidy, check
+	 */
+	if ( !empty($url_parts[1]) && $url_parts[1] == SSC_MEMBERS_SLUG_BASE_SEGMENT ) {
 		wp_redirect( wp_login_url() . '?mbo=1' );
 	}
 }
@@ -51,7 +57,7 @@ add_action( 'wp', 'ssc_member_handle_redirects' );
 
 function ssc_member_admin_bar_visibility() {
 
-	if ( is_user_logged_in() && is_generic_member_user() ) {
+	if ( is_user_logged_in() && ssc_member_is_generic_member_user() ) {
 		show_admin_bar( false );
 	}
 }
@@ -67,7 +73,7 @@ add_action( 'wp', 'ssc_member_admin_bar_visibility' );
  * @return string
  */
 function ssc_members_robots_override( $output ) {
-	$output .= sprintf("Disallow: /%s/*\n", SSC_MEMBERS_SLUG);
+	$output .= sprintf( "Disallow: /%s/*\n", SSC_MEMBERS_SLUG_BASE_SEGMENT );
 
 	return $output;
 }
@@ -85,7 +91,7 @@ add_filter( 'robots_txt', 'ssc_members_robots_override', 0, 2 );
  */
 function ssc_members_comments_open( $open, $post_id ) {
 
-	if ( is_user_logged_in() && is_generic_member_user() ) {
+	if ( is_user_logged_in() && ssc_member_is_generic_member_user() ) {
 		return false;
 	}
 }

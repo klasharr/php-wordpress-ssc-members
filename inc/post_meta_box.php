@@ -1,13 +1,13 @@
 <?php
 /**
  * Add a privacy setting to post pages
- * 
+ *
  * @todo, make screen types configurable from a settings page
  */
 function ssc_members_add_post_privacy_setting() {
 	add_meta_box(
 		'ssc_members_post_privacy', // id
-		esc_html__('Members only'), // title
+		esc_html__( 'Members only' ), // title
 		'ssc_members_render_post_privacy_box', // rendering callback
 		'post', // which screen to display on
 		'normal', // display context (normal, side, advanced)
@@ -22,15 +22,7 @@ function ssc_members_render_post_privacy_box() {
 	// @var WP_Post $post;
 	global $post;
 
-	// @todo tidy
-	$post_meta_values = get_post_custom( $post->ID );
-
-	$privacy_value = ( isset( $post_meta_values['ssc_members_post_privacy'] ) &&
-	                   is_array( $post_meta_values['ssc_members_post_privacy'] ) &&
-	                   isset( $post_meta_values['ssc_members_post_privacy'][0] )
-	)
-		?
-		esc_attr( $post_meta_values['ssc_members_post_privacy'][0] ) : false;
+	$privacy_value = ssc_member_get_post_privacy_value( $post );
 
 	wp_nonce_field( 'my_delete_action', 'ssc_wpnonce' );
 	?>
@@ -44,7 +36,7 @@ function ssc_members_render_post_privacy_box() {
 
 
 function cd_meta_box_save( $post_id ) {
-	
+
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
