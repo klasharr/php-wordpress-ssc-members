@@ -21,7 +21,7 @@ function ssc_member_error_notice() {
 
 	$user = get_option( 'ssc_member_generic_user', 0 );
 
-	if ( $user == 0 ) { ?>
+	if ( 0 === (int) $user ) { ?>
 		<div class="update-nag notice">
 			<p><?php _e( 'You do not have a generic user set up', 'ssc_member' ); ?></p>
 		</div>
@@ -105,9 +105,6 @@ function ssc_member_setting_field_generic_user_validate( $user_id ) {
 		return false;
 	}
 
-	/**
-	 * @todo Prevent any role other than subscriber being used.
-	 */
 	// Do not set the admin up as a generic user
 	if ( 1 == $user_id ) {
 		add_settings_error( 'general', 'ssc_member_generic_user', esc_html__( 'Invalid action' ),

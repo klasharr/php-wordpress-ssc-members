@@ -4,11 +4,15 @@
  *
  * @param WP_Query $query
  */
-function ssc_member_exclude_private_posts( $query ) {
-
+function ssc_member_exclude_private_posts( WP_Query $query ) {
+	
 	if ( is_user_logged_in() ) {
 		return;
 	}
+
+	//if(!is_main_query()){
+	//	return;
+	//}
 
 	// @todo check for a more efficient way to do this
 	$query->set( 'meta_query',

@@ -11,7 +11,7 @@
  */
 function ssc_member_section_primary_nav_menu( $args = '' ) {
 
-	if($args['theme_location'] != 'primary'){
+	if( 'primary' === $args['theme_location'] ){
 		return;
 	}
 
@@ -44,7 +44,7 @@ add_filter( 'wp_nav_menu_args', 'ssc_member_section_primary_nav_menu' );
  * @return string
  */
 function ssc_member_loginout_menu_link( $items, $args ) {
-	if ( $args->theme_location == 'primary' ) {
+	if ( 'primary' === $args->theme_location ) {
 		if ( is_user_logged_in() ) {
 			$items .= '<li class="right"><a href="' . wp_logout_url() . '">' . esc_html__( "Log Out" ) . '</a></li>';
 		} else {

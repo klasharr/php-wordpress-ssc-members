@@ -16,12 +16,11 @@ function ssc_member_is_generic_member_user() {
  */
 function ssc_member_is_private_post( WP_Post $post ) {
 
-	if ( 'member-page' == $post->post_type ) {
+	if ( 'member-page' === $post->post_type ) {
 		return true;
 	}
 
-	if ( 'on' == get_metadata( 'post', $post->ID, 'ssc_members_post_privacy', true ) ) {
-		error_log('private post');
+	if ( 'on' === get_metadata( 'post', $post->ID, 'ssc_members_post_privacy', true ) ) {
 		return true;
 	}
 }
@@ -45,7 +44,7 @@ function ssc_member_is_editing_private_post() {
 	// @var WP_Screen $screen
 	$screen = get_current_screen();
 
-	if ( $screen->post_type == 'post' && $screen->id == 'post' && ssc_member_is_private_post( $post ) ) {
+	if ( 'post' === $screen->post_type && 'post' === $screen->id && ssc_member_is_private_post( $post ) ) {
 		return true;
 	}
 }
@@ -56,7 +55,7 @@ function ssc_member_is_editing_private_post() {
  * @return bool
  */
 function ssc_member_user_is_only_subscriber( WP_User $user ) {
-	if ( 1 === count( $user->roles ) && in_array( 'subscriber', $user->roles ) ) {
+	if ( 1 === count( $user->roles ) && in_array( 'subscriber', $user->roles, true ) ) {
 		return true;
 	}
 }

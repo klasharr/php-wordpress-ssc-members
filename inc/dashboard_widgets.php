@@ -30,7 +30,7 @@ function ssc_members_section_callback() {
 		if(empty($user)){
 			echo sprintf('<p>%s %s</p>',
 				esc_html__(sprintf('Error, user %d could not be found.', $user_id)),
-				ssc_member_get_no_generic_member_set_message()
+				esc_html(ssc_member_get_no_generic_member_set_message())
 			);
 		} else {
 
@@ -45,7 +45,7 @@ function ssc_members_section_callback() {
 	$count_posts = wp_count_posts( 'member-page' );
 	if ( is_object( $count_posts ) && isset( $count_posts->publish ) ) {
 		echo sprintf( '<p>%d %s <a href="%s">%s</a></p>',
-			$count_posts->publish,
+			(int) $count_posts->publish,
 			esc_html__('published', 'ssc-members'),
 			admin_url( 'edit.php?post_type=member-page' ),
 			esc_html__('member pages', 'ssc-members')

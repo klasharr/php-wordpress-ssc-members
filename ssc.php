@@ -36,7 +36,7 @@ function ssc_member_handle_redirects() {
 
 	$permalink = get_permalink();
 
-	$url_parts = explode( "/", parse_url( $permalink, PHP_URL_PATH ) );
+	$url_parts = explode( "/", wp_parse_url( $permalink, PHP_URL_PATH ) );
 
 	// @var WP_POST $post
 	global $post;
@@ -48,8 +48,9 @@ function ssc_member_handle_redirects() {
 	 *
 	 * @todo tidy, check
 	 */
-	if ( !empty($url_parts[1]) && $url_parts[1] == SSC_MEMBERS_SLUG_BASE_SEGMENT ) {
-		wp_redirect( wp_login_url() . '?mbo=1' );
+	if ( !empty($url_parts[1]) && $url_parts[1] === SSC_MEMBERS_SLUG_BASE_SEGMENT ) {
+		wp_safe_redirect( wp_login_url() . '?mbo=1' );
+		exit();
 	}
 }
 

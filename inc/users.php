@@ -10,8 +10,8 @@
  * @param $user_id int
  */
 function ssc_member_delete_generic_user( $user_id ) {
-	$user = get_option( 'ssc_member_generic_user', 0 );
-	if ( $user_id == $user ) {
+	$generic_user_id = get_option( 'ssc_member_generic_user', 0 );
+	if ( $user_id === $generic_user_id ) {
 		delete_option( 'ssc_member_generic_user' );
 	}
 }
@@ -31,7 +31,7 @@ function ssc_member_section_deny_password_reset( $allow, $user_id ) {
 	// @var $user WP_User
 	$user = get_user_by( 'id', $user_id );
 
-	if ( $user->ID == get_option( 'ssc_member_generic_user', 0 ) ) {
+	if ( $user->ID === get_option( 'ssc_member_generic_user', 0 ) ) {
 		$allow = false;
 	}
 
@@ -60,7 +60,7 @@ function ssc_member_get_non_admin_users_select_options_html() {
 		return $out;
 	}
 
-	$option = (int) get_option( 'ssc_member_generic_user', 0 );
+	$generic_user_id = (int) get_option( 'ssc_member_generic_user', 0 );
 
 	/** @var WP_User $user */
 	foreach ( $users as $user ) {
@@ -72,7 +72,7 @@ function ssc_member_get_non_admin_users_select_options_html() {
 
 		$out .= sprintf( '<option value="%d" %s>%s</option>',
 			$user->ID,
-			$option == $user->ID ? 'selected' : '',
+			$generic_user_id === $user->ID ? 'selected' : '',
 			$user->user_login );
 	}
 
