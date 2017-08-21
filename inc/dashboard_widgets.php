@@ -30,7 +30,7 @@ function ssc_members_section_callback() {
 		if(empty($user)){
 			echo sprintf('<p>%s %s</p>',
 				esc_html__(sprintf('Error, user %d could not be found.', $user_id)),
-				esc_html(ssc_member_get_no_generic_member_set_message())
+				ssc_member_get_no_generic_member_set_message()
 			);
 		} else {
 
