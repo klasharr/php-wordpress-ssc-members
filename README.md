@@ -14,6 +14,8 @@ I am in the process of migrating [http://www.swanagesailingclub.org.uk/](http://
 4. Lets you display logged in and logged out versions of the primary menu depending on session state. Currently the names of the menus are hardcoded
 5. Prevents member pages or private posts appearing anywhere when logged out
 6. Adds a switchable debug mode which adds a red bar on member only posts or pages
+7. Provides a shortcode `[ssc-member email="example@example.com" ]Mr Example[/ssc-member]` that will display the email next to a name for a logged in user, but not for a logged out user.
+
 
 ## Do you have a demo?
 
