@@ -23,6 +23,7 @@ include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/users.php' );
 include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/post_types.php' );
 include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/utilities.php' );
 include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/post_meta_box.php' );
+include_once( SSC_MEMBERS_PLUGIN_DIR . 'inc/shortcodes.php' );
 
 /**
  * Redirect the user to a login screen if he/she tries to access member content.
