@@ -40,7 +40,7 @@ function ssc_members_meta_box_save( $post_id ) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
-	$retrieved_nonce = $_REQUEST['ssc_wpnonce'];
+	$retrieved_nonce = ! empty( $_POST['ssc_wpnonce'] ) ? $_POST['ssc_wpnonce'] : false;
 
 	if ( ! wp_verify_nonce( $retrieved_nonce, 'ssc_members_action' ) ) {
 		return;
@@ -50,7 +50,10 @@ function ssc_members_meta_box_save( $post_id ) {
 		return;
 	}
 
-	$checkbox_value = isset( $_POST['ssc_members_post_privacy'] ) && $_POST['ssc_members_post_privacy'] ? 'on' : false;
+	if ( ! empty( $_POST['ssc_members_post_privacy'] ) && $_POST['ssc_members_post_privacy'] !== 'on' ) {
+		return;
+	}
+	$checkbox_value = ! empty( $_POST['ssc_members_post_privacy'] ) ? 'on' : false;
 
 	if ( $checkbox_value ) {
 		update_post_meta( $post_id, 'ssc_members_post_privacy', 'on' );

@@ -2,6 +2,8 @@
 /**
  * @see inc/post_meta_box.php
  *
+ * @todo explore using a custom post with capabilities to implement privacy
+ *
  * @param WP_Query $query
  */
 function ssc_member_exclude_private_posts( WP_Query $query ) {
@@ -10,11 +12,8 @@ function ssc_member_exclude_private_posts( WP_Query $query ) {
 		return;
 	}
 
-	//if(!is_main_query()){
-	//	return;
-	//}
+	$query->is_main_query();
 
-	// @todo check for a more efficient way to do this
 	$query->set( 'meta_query',
 		array(
 			array(
@@ -23,6 +22,7 @@ function ssc_member_exclude_private_posts( WP_Query $query ) {
 			)
 		)
 	);
+
 }
 
 add_action( 'pre_get_posts', 'ssc_member_exclude_private_posts' );

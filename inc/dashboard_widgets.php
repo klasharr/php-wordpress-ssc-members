@@ -54,7 +54,9 @@ function ssc_members_section_callback() {
 }
 
 function ssc_member_get_no_generic_member_set_message(){
-	return sprintf( esc_html__("No generic user set, you can set this %s.", 'ssc-members' ),
-		sprintf( '<a href="%s">%s</a>', admin_url( 'options-general.php' ), esc_html__('here', 'ssc-members') )
+	return sprintf(
+		__( 'No generic user set, you can set this <a href="%s">%s</a>.', 'ssc-members' ),
+		esc_url( admin_url( 'options-general.php' ) ),
+		esc_html__('here', 'ssc-members')
 	);
 }
