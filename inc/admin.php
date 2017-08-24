@@ -99,12 +99,12 @@ function ssc_member_setting_field_debug_callback() {
 }
 
 
-function ssc_member_setting_field_logged_in_primary_menu_callback(){
+function ssc_member_setting_field_logged_in_primary_menu_callback() {
 
 	$logged_in_menu = get_option( 'ssc_member_logged_in_menu', false );
-	$terms = ssc_member_get_nav_menus();
+	$terms          = ssc_member_get_nav_menus();
 
-	$out =  '<select name="ssc_member_logged_in_menu" id="ssc_member_logged_in_menu">';
+	$out = '<select name="ssc_member_logged_in_menu" id="ssc_member_logged_in_menu">';
 	$out .= sprintf( '<option value="-1">%s</option>', esc_html__( 'none' ) );
 
 	/** @var WP_Term $menu */
@@ -153,7 +153,7 @@ function ssc_member_setting_field_generic_user_validate( $user_id ) {
 		return;
 	}
 
-	if ( !ssc_member_user_is_only_subscriber( $user ) ) {
+	if ( ! ssc_member_user_is_only_subscriber( $user ) ) {
 		add_settings_error( 'general', 'ssc_member_generic_user',
 			esc_html__( sprintf( 'User %s does not have exclusively a subscriber role.', $user->user_login ) ), 'error' );
 
@@ -172,10 +172,11 @@ function ssc_member_debug_mode_validate( $input ) {
 	return $input;
 }
 
-function ssc_member_logged_in_menu_validate( $menu_name ){
+function ssc_member_logged_in_menu_validate( $menu_name ) {
 
 	if ( - 1 === (int) $menu_name ) {
 		delete_option( 'ssc_member_logged_in_menu' );
+
 		return false;
 	}
 
@@ -184,18 +185,19 @@ function ssc_member_logged_in_menu_validate( $menu_name ){
 
 	/** @var WP_Term $menu */
 	foreach ( $terms as $menu ) {
-		if($menu_name === $menu->name ){
+		if ( $menu_name === $menu->name ) {
 			$valid = true;
 			break;
 		}
 
 	}
 
-	if(!$valid) {
+	if ( ! $valid ) {
 		// Just in case the menu was set previously and deleted by another user concurrently.
 		delete_option( 'ssc_member_logged_in_menu' );
 		add_settings_error( 'general', 'ssc_member_logged_in_menu',
 			esc_html__( sprintf( 'Menu %s is invalid', $menu_name ) ), 'error' );
+
 		return false;
 	}
 
