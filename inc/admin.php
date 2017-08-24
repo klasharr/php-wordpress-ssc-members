@@ -58,9 +58,18 @@ function ssc_members_settings_api_init() {
 		'ssc_member_user_settings_section' // Section ID of settings page in which to show the field
 	);
 
+	add_settings_field(
+		'ssc_member_logged_in_menu', // Field ID
+		esc_html__( 'Logged in Primary Menu', 'ssc_member' ),// Title
+		'ssc_member_setting_field_logged_in_primary_menu_callback', // Callback
+		'general', // Page (menu slug)
+		'ssc_member_user_settings_section' // Section ID of settings page in which to show the field
+	);
+
 	// $_POST handling automatically taken care of.
 	register_setting( 'general', 'ssc_member_generic_user', 'ssc_member_setting_field_generic_user_validate' );
 	register_setting( 'general', 'ssc_member_debug_mode', 'ssc_member_debug_mode_validate' );
+	register_setting( 'general', 'ssc_member_logged_in_menu', 'ssc_member_logged_in_menu_validate' );
 
 }
 
@@ -89,6 +98,29 @@ function ssc_member_setting_field_debug_callback() {
 		checked( 1, ssc_member_is_debug_mode(), false ) );
 }
 
+
+function ssc_member_setting_field_logged_in_primary_menu_callback(){
+
+	$logged_in_menu = get_option( 'ssc_member_logged_in_menu', false );
+	$terms = ssc_member_get_nav_menus();
+
+	$out =  '<select name="ssc_member_logged_in_menu" id="ssc_member_logged_in_menu">';
+	$out .= sprintf( '<option value="-1">%s</option>', esc_html__( 'none' ) );
+
+	/** @var WP_Term $menu */
+	foreach ( $terms as $menu ) {
+
+		$out .= sprintf( '<option value="%s" %s>%s</option>',
+			$menu->name,
+			$logged_in_menu === $menu->name ? 'selected' : '',
+			$menu->name );
+	}
+
+	$out .= '</select>';
+	echo sprintf( '<p>%s</p>', esc_html__( 'Choose a menu to be active in primary menu location when logged in.', 'ssc_member' ) );
+
+	echo $out;
+}
 
 // ------------ Validation ------------
 
@@ -138,4 +170,34 @@ function ssc_member_debug_mode_validate( $input ) {
 	}
 
 	return $input;
+}
+
+function ssc_member_logged_in_menu_validate( $menu_name ){
+
+	if ( - 1 === (int) $menu_name ) {
+		delete_option( 'ssc_member_logged_in_menu' );
+		return false;
+	}
+
+	$terms = ssc_member_get_nav_menus();
+	$valid = false;
+
+	/** @var WP_Term $menu */
+	foreach ( $terms as $menu ) {
+		if($menu_name === $menu->name ){
+			$valid = true;
+			break;
+		}
+
+	}
+
+	if(!$valid) {
+		// Just in case the menu was set previously and deleted by another user concurrently.
+		delete_option( 'ssc_member_logged_in_menu' );
+		add_settings_error( 'general', 'ssc_member_logged_in_menu',
+			esc_html__( sprintf( 'Menu %s is invalid', $menu_name ) ), 'error' );
+		return false;
+	}
+
+	return $menu_name;
 }

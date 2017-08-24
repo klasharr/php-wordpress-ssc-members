@@ -38,9 +38,6 @@ function ssc_member_handle_redirects() {
 
 	$url_parts = explode( "/", wp_parse_url( $permalink, PHP_URL_PATH ) );
 
-	// @var WP_POST $post
-	global $post;
-
 	/*
 	 * If we exclude content at a query level, @post will be empty for non valid queries therefore
 	 * this will only raise a warning

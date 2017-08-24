@@ -3,31 +3,19 @@
 /**
  * Allow logged in and out variants of the primary navigation menu.
  *
- * @todo make the menu options come from settings
- *
  * @param string $args
  *
  * @return string
  */
 function ssc_member_section_primary_nav_menu( $args = '' ) {
 
-	if( 'primary' !== $args['theme_location'] ){
-		return;
+	$menu_option = get_option( 'ssc_member_logged_in_menu', false );
+
+	if ( !is_user_logged_in() || false === $menu_option ||  'primary' !== $args['theme_location'] ) {
+		return $args;
 	}
 
-	//print_r(wp_get_nav_menu_object('primary'));
-
-	//$menus = get_registered_nav_menus();
-	//if(!empty($menus) && is_array($menus)){
-	//	$primary_menu_name = $menus['primary'];
-	//}
-
-	if ( is_user_logged_in() ) {
-		$args['menu'] = 'top-logged-in';
-	} else {
-		$args['menu'] = 'top-logged-out';
-	}
-
+	$args['menu'] = $menu_option;
 	return $args;
 }
 

@@ -48,3 +48,21 @@ function ssc_member_search_modifications( $args, $post_type ) {
 }
 
 add_filter( 'register_post_type_args', 'ssc_member_search_modifications', 20, 2 );
+
+
+function ssc_member_get_nav_menus(){
+
+	if(version_compare(get_bloginfo('version'),'4.5.0', '>') ){
+		$terms = get_terms(array(
+			'taxonomy' => 'nav_menu',
+			'hide_empty' => false,
+		));
+	} else {
+		$terms = get_terms('nav_menu', array(
+			'hide_empty' => false,
+		));
+	}
+
+	return $terms;
+
+}
