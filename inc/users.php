@@ -78,16 +78,3 @@ function ssc_member_get_non_admin_users_select_options_html() {
 
 	return $out;
 }
-
-
-// Detect redirection from member only content.
-if ( ! empty( $_GET['mbo'] ) && 1 === (int) $_GET['mbo'] ) {
-
-	function custom_login_message() {
-		$message = '<p class="message">You will need to login to see this content</p>';
-
-		return $message;
-	}
-
-	add_filter( 'login_message', 'custom_login_message' );
-}

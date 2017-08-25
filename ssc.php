@@ -36,6 +36,7 @@ function ssc_member_handle_redirects() {
 
 	$permalink = get_permalink();
 
+
 	$url_parts = explode( "/", wp_parse_url( $permalink, PHP_URL_PATH ) );
 
 	/*
@@ -46,12 +47,14 @@ function ssc_member_handle_redirects() {
 	 * @todo tidy, check
 	 */
 	if ( !empty($url_parts[1]) && $url_parts[1] === SSC_MEMBERS_SLUG_BASE_SEGMENT ) {
-		wp_safe_redirect( wp_login_url() . '?mbo=1' );
+		wp_safe_redirect( wp_login_url().'?mbo=1' );
 		exit();
 	}
 }
 
 add_action( 'wp', 'ssc_member_handle_redirects' );
+
+
 
 
 function ssc_member_admin_bar_visibility() {
@@ -96,3 +99,18 @@ function ssc_members_comments_open( $open, $post_id ) {
 }
 
 add_filter( 'comments_open', 'ssc_members_comments_open', 10, 2 );
+
+
+
+if ( ssc_member_is_redirect_to_login() ) {
+
+	function custom_login_message() {
+		return sprintf(
+			'<p class="ssc_member_login_message">%s</p>',
+			esc_html__( 'You will need to login to see this content' ) );
+
+	}
+
+	add_filter( 'login_message', 'custom_login_message' );
+
+}

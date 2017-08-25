@@ -1,0 +1,106 @@
+
+FILE: /home/wpcom/tmp/ssc-members/ssc.php
+-----------------------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AND 12 WARNINGS AFFECTING 13 LINES
+-----------------------------------------------------------------------------------------------------------------
+ 16 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 17 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 18 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 19 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 20 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 21 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 22 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 23 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 24 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 25 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 26 | WARNING | File inclusion using custom constant (SSC_MEMBERS_PLUGIN_DIR). Probably needs manual inspection.
+ 48 | WARNING | Use Yoda Condition checks, you must.
+ 60 | ERROR   | Removal of admin bar is prohibited.
+-----------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wpcom/tmp/ssc-members/inc/dashboard_widgets.php
+---------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 4 LINES
+---------------------------------------------------------------------------------------------------------------------------------------------------
+ 24 | ERROR | Expected next thing to be an escaping function (see Codex for 'Data Validation'), not 'ssc_member_get_no_generic_member_set_message'
+ 33 | ERROR | Expected next thing to be an escaping function (see Codex for 'Data Validation'), not 'ssc_member_get_no_generic_member_set_message'
+ 40 | ERROR | Expected next thing to be an escaping function (see Codex for 'Data Validation'), not '$user_info'
+ 40 | ERROR | Expected next thing to be an escaping function (see Codex for 'Data Validation'), not '$edit'
+ 50 | ERROR | Expected next thing to be an escaping function (see Codex for 'Data Validation'), not 'admin_url'
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wpcom/tmp/ssc-members/inc/data.php
+----------------------------------------------------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------------------------------------------------
+ 17 | WARNING | Main WP_Query is being modified without $query->is_main_query() check. Needs manual inspection.
+----------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wpcom/tmp/ssc-members/inc/users.php
+---------------------------------------------------------------------------------------------
+FOUND 0 ERRORS AND 5 WARNINGS AFFECTING 2 LINES
+---------------------------------------------------------------------------------------------
+ 34 | WARNING | Use Yoda Condition checks, you must.
+ 84 | WARNING | Detected access of super global var $_GET, probably needs manual inspection.
+ 84 | WARNING | Processing form data without nonce verification.
+ 84 | WARNING | Detected access of super global var $_GET, probably needs manual inspection.
+ 84 | WARNING | Processing form data without nonce verification.
+---------------------------------------------------------------------------------------------
+
+
+FILE: /home/wpcom/tmp/ssc-members/inc/shortcodes.php
+-------------------------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AND 4 WARNINGS AFFECTING 3 LINES
+-------------------------------------------------------------------------------------------------------------------
+ 13 | ERROR   | extract() usage is highly discouraged, due to the complexity and unintended issues it might cause.
+ 21 | WARNING | Variable $email is undefined.
+ 21 | WARNING | Variable $email is undefined.
+ 24 | WARNING | Variable $email is undefined.
+ 24 | WARNING | Variable $email is undefined.
+-------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wpcom/tmp/ssc-members/inc/admin.php
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 3 ERRORS AND 3 WARNINGS AFFECTING 6 LINES
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  10 | WARNING | wp_redirect() found. Using wp_safe_redirect(), along with the allowed_redirect_hosts filter, can help avoid any chances of malicious redirects within code. It is also important to remember to call exit() after a redirect so that no
+     |         | other unwanted code is executed.
+  26 | ERROR   | Expected next thing to be an escaping function (like esc_html_e() or esc_attr_e()), not '_e'
+  90 | ERROR   | Expected next thing to be an escaping function (see Codex for 'Data Validation'), not 'ssc_member_get_non_admin_users_select_options_html'
+ 122 | ERROR   | Expected next thing to be an escaping function (see Codex for 'Data Validation'), not '$out'
+ 134 | WARNING | Found: ==. Use strict comparisons (=== or !==).
+ 141 | WARNING | Found: ==. Use strict comparisons (=== or !==).
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wpcom/tmp/ssc-members/inc/post_meta_box.php
+----------------------------------------------------------------------------------------------
+FOUND 2 ERRORS AND 6 WARNINGS AFFECTING 3 LINES
+----------------------------------------------------------------------------------------------
+ 43 | WARNING | Detected access of super global var $_POST, probably needs manual inspection.
+ 43 | WARNING | Detected access of super global var $_POST, probably needs manual inspection.
+ 43 | ERROR   | Detected usage of a non-sanitized input variable: $_POST
+ 43 | ERROR   | Processing form data without nonce verification.
+ 53 | WARNING | Detected access of super global var $_POST, probably needs manual inspection.
+ 53 | WARNING | Detected access of super global var $_POST, probably needs manual inspection.
+ 53 | WARNING | Use Yoda Condition checks, you must.
+ 56 | WARNING | Detected access of super global var $_POST, probably needs manual inspection.
+----------------------------------------------------------------------------------------------
+
+
+FILE: /home/wpcom/tmp/ssc-members/inc/scripts_styles.php
+--------------------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AND 3 WARNINGS AFFECTING 3 LINES
+--------------------------------------------------------------------------------------------------------------
+ 11 | WARNING | Found: ==. Use strict comparisons (=== or !==).
+ 15 | WARNING | Found: ==. Use strict comparisons (=== or !==).
+ 15 | WARNING | Use Yoda Condition checks, you must.
+ 16 | ERROR   | Expected next thing to be an escaping function (see Codex for 'Data Validation'), not '$post'
+--------------------------------------------------------------------------------------------------------------
+
+Time: 543ms; Memory: 6Mb
+

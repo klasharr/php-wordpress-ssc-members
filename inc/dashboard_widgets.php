@@ -21,7 +21,7 @@ function ssc_members_section_callback() {
 
 	if ( 0 === (int) $user_id ) {
 
-		echo sprintf('<p>%s</p>', ssc_member_get_no_generic_member_set_message());
+		echo sprintf('<p>%s</p>', esc_html( ssc_member_get_no_generic_member_set_message() ) );
 
 	} else {
 
@@ -30,12 +30,12 @@ function ssc_members_section_callback() {
 		if(empty($user)){
 			echo sprintf('<p>%s %s</p>',
 				esc_html__(sprintf('Error, user %d could not be found.', $user_id)),
-				ssc_member_get_no_generic_member_set_message()
+				esc_html( ssc_member_get_no_generic_member_set_message() )
 			);
 		} else {
 
 			$user_info =  sprintf( esc_html__("Generic user is %s.",'ssc-members'), sprintf('<strong>%s</strong>', $user->user_login ) );
-			$edit = sprintf( "<a href='%s'>%s</a>", admin_url( 'options-general.php' ), esc_html__('edit', 'ssc-members') );
+			$edit = sprintf( "<a href='%s'>%s</a>", esc_url( admin_url( 'options-general.php' ) ), esc_html__('edit', 'ssc-members') );
 
 			echo sprintf('<p>%s %s</p>', $user_info, $edit );
 		}

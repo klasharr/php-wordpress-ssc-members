@@ -3,16 +3,15 @@
  * @see inc/post_meta_box.php
  *
  * @todo explore using a custom post with capabilities to implement privacy
+ * @todo adding is_main_query() makes archive links appear
  *
  * @param WP_Query $query
  */
 function ssc_member_exclude_private_posts( WP_Query $query ) {
 	
-	if ( is_user_logged_in() ) {
+	if ( is_user_logged_in() || !$query->is_main_query() ) {
 		return;
 	}
-
-	$query->is_main_query();
 
 	$query->set( 'meta_query',
 		array(

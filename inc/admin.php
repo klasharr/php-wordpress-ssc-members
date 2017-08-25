@@ -7,7 +7,7 @@ function admin_init_function() {
 
 	// is_admin() is a check for accessing admin pages, not checking for the admin role
 	if ( ssc_member_is_generic_member_user() && is_admin() ) {
-		wp_redirect( get_home_url() );
+		wp_safe_redirect( get_home_url() );
 	}
 }
 
@@ -23,7 +23,7 @@ function ssc_member_error_notice() {
 
 	if ( 0 === (int) $user ) { ?>
 		<div class="update-nag notice">
-			<p><?php _e( 'You do not have a generic user set up', 'ssc_member' ); ?></p>
+			<p><?php esc_html_e( 'You do not have a generic user set up', 'ssc_member' ); ?></p>
 		</div>
 		<?php
 	}
@@ -119,7 +119,7 @@ function ssc_member_setting_field_logged_in_primary_menu_callback() {
 	$out .= '</select>';
 	echo sprintf( '<p>%s</p>', esc_html__( 'Choose a menu to be active in primary menu location when logged in.', 'ssc_member' ) );
 
-	echo $out;
+	echo esc_html($out);
 }
 
 // ------------ Validation ------------
@@ -131,14 +131,14 @@ function ssc_member_setting_field_generic_user_validate( $user_id ) {
 	}
 
 	// If none was selected clean up the option and prevent saving of the new value
-	if ( - 1 == $user_id ) {
+	if ( - 1 === $user_id ) {
 		delete_option( 'ssc_member_generic_user' );
 
 		return false;
 	}
 
 	// Do not set the admin up as a generic user
-	if ( 1 == $user_id ) {
+	if ( 1 === $user_id ) {
 		add_settings_error( 'general', 'ssc_member_generic_user', esc_html__( 'Invalid action' ),
 			'error' );
 

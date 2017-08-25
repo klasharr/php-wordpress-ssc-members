@@ -72,3 +72,11 @@ function ssc_member_get_post_privacy_value( WP_Post $post ) {
 		return esc_attr( $post_meta_values['ssc_members_post_privacy'][0] );
 	}
 }
+
+function ssc_member_is_redirect_to_login(){
+
+	if( ! empty( $_GET['mbo'] ) && 1 === (int) $_GET['mbo'] ) {
+		return true;
+	}
+
+}
