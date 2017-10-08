@@ -11,11 +11,12 @@ I needed to migrate [http://www.swanagesailingclub.org.uk/](http://www.swanagesa
 1. Lets you choose a subscriber role user to be your generic user. This user does not see any profile or admin pages and can not request a password reset
 2. Adds a new post type for member pages which has /members as the base URL segment
 3. Adds a 'Members only' flag to the post edit pages
-4. Lets you display logged in and logged out versions of the primary menu depending on session state. Currently the names of the menus are hardcoded
+4. Lets you display logged in and logged out versions of the primary menu depending on session state.
 5. Prevents member pages or private posts appearing anywhere when logged out
 6. Adds a switchable debug mode which adds a red bar on member only posts or pages
 7. Provides a shortcode `[ssc-member email="example@example.com" ]Mr Example[/ssc-member]` that will display the email next to a name for a logged in user, but not for a logged out user.
 
+![Settings](http://ssc.klausharris.de/wp-content/uploads/2017/08/Screen-Shot-2017-10-08-at-09.18.52.png)
 
 ## Do you have a demo?
 
