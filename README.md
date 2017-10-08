@@ -4,7 +4,7 @@ A WordPress plugin to help you build a members area on a website with an optiona
 
 ## Background
 
-I am in the process of migrating [http://www.swanagesailingclub.org.uk/](http://www.swanagesailingclub.org.uk/) from Drupal 7 to WordPress, you can see the custom D7 module I wrote for that [here](https://github.com/klasharr/php-drupal7-ssc). This is my first foray into WordPress development so this is also a good exercise in using the APIs. The sailing club website has a downloads section for members and [https://wordpress.org/plugins/download-monitor/](https://wordpress.org/plugins/download-monitor/) works nicely to fulfill that requirement.
+I needed to migrate [http://www.swanagesailingclub.org.uk/](http://www.swanagesailingclub.org.uk/) from Drupal 7 to WordPress and needed functionality to provide a simple members section on the site. I wrote custom D7 module for such members functionality [here](https://github.com/klasharr/php-drupal7-ssc). This is my first foray into WordPress development so this is also a good exercise in using the APIs. The sailing club website has a downloads section for members and [https://wordpress.org/plugins/download-monitor/](https://wordpress.org/plugins/download-monitor/) works nicely to fulfill that requirement.
 
 ## What it does
 
@@ -26,7 +26,7 @@ pass: a
 
 ## Can I use it?
 
-Not yet, it's still very early days. I will complete and publish it.
+It's now October 2017, come back in December as there are a couple of things to change. It is now in production on [http://www.swanagesailingclub.org.uk/](http://www.swanagesailingclub.org.uk/).
 
 ## Can I request a feature?
 
