@@ -119,7 +119,7 @@ function ssc_member_setting_field_logged_in_primary_menu_callback() {
 	$out .= '</select>';
 	echo sprintf( '<p>%s</p>', esc_html__( 'Choose a menu to be active in primary menu location when logged in.', 'ssc_member' ) );
 
-	echo esc_html($out);
+	echo $out;
 }
 
 // ------------ Validation ------------
