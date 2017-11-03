@@ -117,3 +117,16 @@ if ( ssc_member_is_redirect_to_login() ) {
 
 function ssc_footer() {}
 add_action('wp_footer', 'ssc_footer');
+
+function ssc_login_message( $message ) {
+
+	if ( empty($message) ){
+		return sprintf("<p style='center'>%s</p>",
+			"Login here to the Swanage Sailing Club Website. <br/><br/>If you don't have the login details, please check the Members handbook or contact <a href='mailto:webmaster@swanagesailingclub.org.uk'>webmaster@swanagesailingclub.org.uk</a>"
+		);
+	} else {
+		return $message;
+	}
+}
+
+add_filter( 'login_message', 'ssc_login_message' );
