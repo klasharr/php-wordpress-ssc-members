@@ -114,3 +114,6 @@ if ( ssc_member_is_redirect_to_login() ) {
 	add_filter( 'login_message', 'custom_login_message' );
 
 }
+
+function ssc_footer() {}
+add_action('wp_footer', 'ssc_footer');

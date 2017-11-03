@@ -27,11 +27,7 @@ add_action( 'delete_user', 'ssc_member_delete_generic_user' );
  */
 function ssc_member_section_deny_password_reset( $allow, $user_id ) {
 
-	// WP_User object
-	// @var $user WP_User
-	$user = get_user_by( 'id', $user_id );
-
-	if ( $user->ID === get_option( 'ssc_member_generic_user', 0 ) ) {
+	if ( $user_id === (int) get_option( 'ssc_member_generic_user', 0 ) ) {
 		$allow = false;
 	}
 
