@@ -23,6 +23,7 @@ I needed to migrate [http://www.swanagesailingclub.org.uk/](http://www.swanagesa
 Yes, go to [http://ssc.klausharris.de/](http://ssc.klausharris.de/), the generic user you can try is:
 
 user: test
+
 pass: a
 
 ## Can I use it?
@@ -36,4 +37,5 @@ Yes. Reach me at: [https://klaus.blog/contact/](https://klaus.blog/contact/) or 
 ## Tested up to
 
 WordPress 4.8.3 Nov 2017
+
 Jetpack 5.4 Nov 2017
