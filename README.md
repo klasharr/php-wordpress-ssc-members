@@ -27,8 +27,13 @@ pass: a
 
 ## Can I use it?
 
-It's now October 2017, come back in December as there are a couple of things to change. It is now in production on [http://www.swanagesailingclub.org.uk/](http://www.swanagesailingclub.org.uk/).
+Check out the GitHub issues and see if you want to use it. I will explore access restrictions based on role and capabilities which might change things a lot. It is however now in production on [http://www.swanagesailingclub.org.uk/](http://www.swanagesailingclub.org.uk/).
 
 ## Can I request a feature?
 
 Yes. Reach me at: [https://klaus.blog/contact/](https://klaus.blog/contact/) or raise an issue.
+
+## Tested up to
+
+WordPress 4.8.3 Nov 2017
+Jetpack 5.4 Nov 2017
