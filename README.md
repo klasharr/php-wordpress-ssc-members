@@ -36,6 +36,5 @@ Yes. Reach me at: [https://klaus.blog/contact/](https://klaus.blog/contact/) or 
 
 ## Tested up to
 
-WordPress 4.8.3 Nov 2017
-
-Jetpack 5.4 Nov 2017
+Wordpress 4.9 Nov 2017
+Jetpack 5.5 Nov 2017
