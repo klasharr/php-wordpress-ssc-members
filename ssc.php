@@ -1,4 +1,5 @@
 <?php
+
 /*
  Plugin Name: SSC Member section
  Plugin URI: TBD
@@ -8,6 +9,9 @@
  Author URI: https://klaus.blog
  Text Domain: ssc-members
  */
+
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 define( 'SSC_MEMBERS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SSC_MEMBERS_PLUGIN_FILE', __FILE__ );

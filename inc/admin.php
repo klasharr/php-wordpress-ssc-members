@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Stop our generic user accessing the admin pages, this will prevent viewing / managing the profile
  */

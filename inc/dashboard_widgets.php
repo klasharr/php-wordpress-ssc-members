@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 function ssc_members_dashboard_section() {
 
 	wp_add_dashboard_widget(

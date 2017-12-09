@@ -1,7 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
- * Add custom CSS to header
+ * Add custom CSS to header. Gives a visual indicator that we are editing a member page or member post
  */
 function ssc_member_add_header_styles() {
 

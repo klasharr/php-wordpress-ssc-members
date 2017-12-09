@@ -1,7 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
- * Allow logged in and out variants of the primary navigation menu.
+ * If a logged in primary menu is specified, use that.
  *
  * @param string $args
  *

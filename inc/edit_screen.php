@@ -1,7 +1,10 @@
 <?php
 
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
- * @todo various clean up
+ * 
  */
 function ssc_member_edit_screen_message() {
 

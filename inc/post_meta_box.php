@@ -1,4 +1,7 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Add a privacy setting to post pages
  *
@@ -58,7 +61,7 @@ function ssc_members_meta_box_save( $post_id ) {
 	if ( $checkbox_value ) {
 		update_post_meta( $post_id, 'ssc_members_post_privacy', 'on' );
 	} else {
-		delete_post_meta( $post_id, 'ssc_members_post_privacy', 'on' );
+		delete_post_meta( $post_id, 'ssc_members_post_privacy', 'on' ); // third arg could be removed.
 	}
 }
 
