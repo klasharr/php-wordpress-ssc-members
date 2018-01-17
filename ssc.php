@@ -59,8 +59,9 @@ function ssc_member_handle_redirects() {
 add_action( 'wp', 'ssc_member_handle_redirects' );
 
 
-
-
+/**
+ * Hide admin bar for our generic member
+ */
 function ssc_member_admin_bar_visibility() {
 
 	if ( is_user_logged_in() && ssc_member_is_generic_member_user() ) {
@@ -105,7 +106,9 @@ function ssc_members_comments_open( $open, $post_id ) {
 add_filter( 'comments_open', 'ssc_members_comments_open', 10, 2 );
 
 
-
+/**
+ * Display a custom message if the user id redirected to the login page
+ */
 if ( ssc_member_is_redirect_to_login() ) {
 
 	function custom_login_message() {
@@ -114,19 +117,28 @@ if ( ssc_member_is_redirect_to_login() ) {
 			esc_html__( 'You will need to login to see this content' ) );
 
 	}
-
 	add_filter( 'login_message', 'custom_login_message' );
-
 }
+
 
 function ssc_footer() {}
 add_action('wp_footer', 'ssc_footer');
 
+
+/**
+ * Display a message on the login screen
+ *
+ * @param $message
+ *
+ * @return string
+ */
 function ssc_login_message( $message ) {
 
 	if ( empty($message) ){
-		return sprintf("<p style='center'>%s</p>",
-			"Login here to the Swanage Sailing Club Website. <br/><br/>If you don't have the login details, please check the Members handbook or contact <a href='mailto:webmaster@swanagesailingclub.org.uk'>webmaster@swanagesailingclub.org.uk</a>"
+		return sprintf(
+			"<p style='center'>%s</p><p style='center'>%s <a href='mailto:webmaster@swanagesailingclub.org.uk'>webmaster@swanagesailingclub.org.uk</a>.</p>",
+			esc_html__( "Login here to the Swanage Sailing Club Website ") ,
+			esc_html__( "If you don't have the login details, please check the Members handbook or contact" )
 		);
 	} else {
 		return $message;
@@ -134,3 +146,41 @@ function ssc_login_message( $message ) {
 }
 
 add_filter( 'login_message', 'ssc_login_message' );
+
+
+/**
+ * Redirect the user to a page after login
+ *
+ * @param $redirect_to
+ * @param $request
+ * @param $user
+ *
+ * @return string
+ */
+function ssc_login_redirect( $redirect_to, $request, $user ) {
+
+	if ( isset( $user->roles ) && is_array( $user->roles ) ) {
+
+		if ( in_array( 'administrator', $user->roles ) ) {
+			return '/wp-admin/';
+		} else {
+
+			return get_option( 'ssc_member_login_url', '/' );
+		}
+
+	} else {
+		return $redirect_to;
+	}
+}
+
+add_filter( 'login_redirect', 'ssc_login_redirect', 10, 3 );
+
+/**
+ * Send the user to a page after logout
+ */
+function ssc_logout_redirect() {
+
+	wp_redirect( get_option( 'ssc_member_logout_url', '/' ) );
+	exit();
+}
+add_action('wp_logout', 'ssc_logout_redirect', PHP_INT_MAX);
