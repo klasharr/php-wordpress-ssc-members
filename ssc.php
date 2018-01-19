@@ -130,6 +130,8 @@ add_action('wp_footer', 'ssc_footer');
 /**
  * Display a message on the login screen
  *
+ * @todo bring this in from settings.
+ *
  * @param $message
  *
  * @return string
@@ -138,9 +140,8 @@ function ssc_login_message( $message ) {
 
 	if ( empty($message) ){
 		return sprintf(
-			"<p style='center'>%s</p><p style='center'>%s <a href='mailto:webmaster@swanagesailingclub.org.uk'>webmaster@swanagesailingclub.org.uk</a>.</p>",
-			esc_html__( "Login here to the Swanage Sailing Club Website ") ,
-			esc_html__( "If you don't have the login details, please check the Members handbook or contact" )
+			"<p class='ssc_login_message'>%s <a href='http://www.swanagesailingclub.org.uk/contact/'>contact</a>.</p>",
+			esc_html__( "If you don't have the login details, please check the Members handbook or get in " )
 		);
 	} else {
 		return $message;
@@ -186,3 +187,31 @@ function ssc_logout_redirect() {
 	exit();
 }
 add_action('wp_logout', 'ssc_logout_redirect', PHP_INT_MAX);
+
+/**
+ * @todo make image, logo url and bg colour come from settings
+ */
+function ssc_login_form_css(){
+
+	echo '<style>
+		#login h1 a { 
+			background-image: url("/wp-content/uploads/2018/01/Logo.jpg");
+			background-size: auto; width: auto; margin: 0; 
+		}
+		.ssc_login_message{
+			text-align: center;
+			margin-bottom: 1.5em;
+		}
+		body{
+			background-color: white !important;
+		}
+		</style>' . "\n";
+
+}
+add_action( 'login_head', 'ssc_login_form_css' );
+
+
+function ssc_login_form_logo_url($url) {
+	return get_bloginfo( 'url' );
+}
+add_filter( 'login_headerurl', 'ssc_login_form_logo_url' );
