@@ -211,7 +211,19 @@ function ssc_login_form_css(){
 add_action( 'login_head', 'ssc_login_form_css' );
 
 
-function ssc_login_form_logo_url($url) {
+/**
+ * Set the logo login URL as the site URL, i.e. the default is WordPress.org, we don't want that.
+ * @return string|void
+ */
+function ssc_login_form_logo_url() {
 	return get_bloginfo( 'url' );
 }
 add_filter( 'login_headerurl', 'ssc_login_form_logo_url' );
+
+
+// Disable Jetpack SSO as the default login method IF it is enabled
+if ( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'sso' ) ) {
+	add_filter( 'jetpack_sso_default_to_sso_login', '__return_false' );
+}
+
+
