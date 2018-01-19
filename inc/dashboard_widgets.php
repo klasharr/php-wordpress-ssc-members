@@ -2,6 +2,9 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Add an admin dashboard with some summary data about this plugin
+ */
 function ssc_members_dashboard_section() {
 
 	wp_add_dashboard_widget(

@@ -73,7 +73,7 @@ add_action( 'wp', 'ssc_member_admin_bar_visibility' );
 
 
 /**
- * Adding for completeness
+ * Prevent Google from trying to index member pages.
  *
  * @param $output
  *
@@ -120,7 +120,9 @@ if ( ssc_member_is_redirect_to_login() ) {
 	add_filter( 'login_message', 'custom_login_message' );
 }
 
-
+/**
+ * Doing nothing for now
+ */
 function ssc_footer() {}
 add_action('wp_footer', 'ssc_footer');
 

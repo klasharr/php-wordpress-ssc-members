@@ -17,7 +17,8 @@ add_action( 'admin_init', 'admin_init_function' );
 
 
 /**
- * Options for different notice displays are error, update-nag, notice
+ * Admin message if no generic user is set up. Options for different notice displays are error,
+ * update-nag, notice
  */
 function ssc_member_error_notice() {
 

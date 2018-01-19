@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
  * Add custom CSS to header. Gives a visual indicator that we are editing a member page or member post
+ * This will only get used if we are in debug mode.
  */
 function ssc_member_add_header_styles() {
 

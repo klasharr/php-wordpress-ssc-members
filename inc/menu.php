@@ -3,7 +3,11 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * If a logged in primary menu is specified, use that.
+ * Override the primary menu choice IF we are logged in and there is a logged in primary menu set.
+ * This basically lets us have logged in and logged out primary menus.
+ *
+ * To have effect, a navigation menu which is to be the 'logged in' menu must have been selected in
+ * the settings page for this plugin.
  *
  * @param string $args
  *

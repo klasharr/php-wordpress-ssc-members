@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 /**
- * option clean up
+ * Option clean up
  *
  * @param $user_id int
  */

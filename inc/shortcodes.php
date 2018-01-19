@@ -3,6 +3,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Define a shortcode.
+ *
  * @param $atts
  * @param null $content
  *

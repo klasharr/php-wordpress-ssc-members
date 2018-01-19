@@ -4,7 +4,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * 
+ * Add a visual notification on the edit screen to tell users they are editing a members page or post.
  */
 function ssc_member_edit_screen_message() {
 

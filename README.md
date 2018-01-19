@@ -37,4 +37,4 @@ Yes. Reach me at: [https://klaus.blog/contact/](https://klaus.blog/contact/) or 
 ## Tested up to
 
 Wordpress 4.9 Nov 2017
-Jetpack 5.5 Nov 2017
+Jetpack 5.7 Jan 2018
