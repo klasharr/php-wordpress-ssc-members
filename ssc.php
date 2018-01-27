@@ -10,8 +10,9 @@
  Text Domain: ssc-members
  */
 
-
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 define( 'SSC_MEMBERS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SSC_MEMBERS_PLUGIN_FILE', __FILE__ );
@@ -50,8 +51,8 @@ function ssc_member_handle_redirects() {
 	 *
 	 * @todo tidy, check
 	 */
-	if ( !empty($url_parts[1]) && $url_parts[1] === SSC_MEMBERS_SLUG_BASE_SEGMENT ) {
-		wp_safe_redirect( wp_login_url().'?mbo=1' );
+	if ( ! empty( $url_parts[1] ) && $url_parts[1] === SSC_MEMBERS_SLUG_BASE_SEGMENT ) {
+		wp_safe_redirect( wp_login_url() . '?mbo=1' );
 		exit();
 	}
 }
@@ -117,14 +118,17 @@ if ( ssc_member_is_redirect_to_login() ) {
 			esc_html__( 'You will need to login to see this content' ) );
 
 	}
+
 	add_filter( 'login_message', 'custom_login_message' );
 }
 
 /**
  * Doing nothing for now
  */
-function ssc_footer() {}
-add_action('wp_footer', 'ssc_footer');
+function ssc_footer() {
+}
+
+add_action( 'wp_footer', 'ssc_footer' );
 
 
 /**
@@ -138,7 +142,7 @@ add_action('wp_footer', 'ssc_footer');
  */
 function ssc_login_message( $message ) {
 
-	if ( empty($message) ){
+	if ( empty( $message ) ) {
 		return sprintf(
 			"<p class='ssc_login_message'>%s <a href='http://www.swanagesailingclub.org.uk/contact/'>contact</a>.</p>",
 			esc_html__( "If you don't have the login details, please check the Members handbook or get in " )
@@ -186,12 +190,13 @@ function ssc_logout_redirect() {
 	wp_redirect( get_option( 'ssc_member_logout_url', '/' ) );
 	exit();
 }
-add_action('wp_logout', 'ssc_logout_redirect', PHP_INT_MAX);
+
+add_action( 'wp_logout', 'ssc_logout_redirect', PHP_INT_MAX );
 
 /**
  * @todo make image, logo url and bg colour come from settings
  */
-function ssc_login_form_css(){
+function ssc_login_form_css() {
 
 	echo '<style>
 		#login h1 a { 
@@ -208,6 +213,7 @@ function ssc_login_form_css(){
 		</style>' . "\n";
 
 }
+
 add_action( 'login_head', 'ssc_login_form_css' );
 
 
@@ -218,6 +224,7 @@ add_action( 'login_head', 'ssc_login_form_css' );
 function ssc_login_form_logo_url() {
 	return get_bloginfo( 'url' );
 }
+
 add_filter( 'login_headerurl', 'ssc_login_form_logo_url' );
 
 

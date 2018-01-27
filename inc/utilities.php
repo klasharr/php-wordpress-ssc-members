@@ -1,6 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * @return bool
@@ -75,9 +77,9 @@ function ssc_member_get_post_privacy_value( WP_Post $post ) {
 	}
 }
 
-function ssc_member_is_redirect_to_login(){
+function ssc_member_is_redirect_to_login() {
 
-	if( ! empty( $_GET['mbo'] ) && 1 === (int) $_GET['mbo'] ) {
+	if ( ! empty( $_GET['mbo'] ) && 1 === (int) $_GET['mbo'] ) {
 		return true;
 	}
 

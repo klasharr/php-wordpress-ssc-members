@@ -1,6 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 // @todo remove generic user access if user role changes from subscriber
 // https://codex.wordpress.org/Plugin_API/Action_Reference/profile_update

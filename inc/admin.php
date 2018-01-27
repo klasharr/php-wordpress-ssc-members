@@ -1,6 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Stop our generic user accessing the admin pages, this will prevent viewing / managing the profile
@@ -144,13 +146,13 @@ function ssc_member_setting_field_logged_in_primary_menu_callback() {
 }
 
 
-function ssc_member_setting_field_logout_url_callback(){
+function ssc_member_setting_field_logout_url_callback() {
 	$logout_url = get_option( 'ssc_member_logout_url', false );
 	printf( "<input name='ssc_member_logout_url' value='%s'>", esc_html( $logout_url ) );
 
 }
 
-function ssc_member_setting_field_login_url_callback(){
+function ssc_member_setting_field_login_url_callback() {
 	$logout_url = get_option( 'ssc_member_login_url', false );
 	printf( "<input name='ssc_member_login_url' value='%s'>", esc_html( $logout_url ) );
 }
@@ -244,11 +246,14 @@ function ssc_member_logged_in_menu_validate( $menu_name ) {
  *
  * @return bool|string
  */
-function ssc_member_logout_url_validate( $input ){
+function ssc_member_logout_url_validate( $input ) {
 
-	if( $input == '/' ) return $input;
+	if ( $input == '/' ) {
+		return $input;
+	}
 
 	$input = trim( $input );
+
 	/*
 	$page = get_page_by_path( $input , OBJECT );
 	if( empty( $page ) ) {
@@ -256,17 +261,19 @@ function ssc_member_logout_url_validate( $input ){
 			esc_html__( sprintf( 'The logout URL %s is invalid', $input ) ), 'error' );
 		return false;
 	} */
+
 	return $input;
 }
 
 /**
  * @todo complete
+ *
  * @param $input
  *
  * @return string
  *
  */
-function ssc_member_login_url_validate( $input ){
+function ssc_member_login_url_validate( $input ) {
 
 	/*
 	$page = get_page_by_path( $input , OBJECT );

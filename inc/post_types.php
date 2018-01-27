@@ -1,6 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Set up our member only pages.
@@ -9,12 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function ssc_member_pages_init() {
 	$args = array(
-		'label'             => esc_html__('Member pages'),
+		'label'             => esc_html__( 'Member pages' ),
 		'public'            => true,
 		'show_ui'           => true,
 		'capability_type'   => 'post',
 		'hierarchical'      => false,
-		'rewrite'           => array( 'slug' => SSC_MEMBERS_SLUG_BASE_SEGMENT),
+		'rewrite'           => array( 'slug' => SSC_MEMBERS_SLUG_BASE_SEGMENT ),
 		'query_var'         => true,
 		'menu_icon'         => 'dashicons-admin-page',
 		'show_in_nav_menus' => true,

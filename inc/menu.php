@@ -1,6 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Override the primary menu choice IF we are logged in and there is a logged in primary menu set.
@@ -17,11 +19,12 @@ function ssc_member_section_primary_nav_menu( $args = '' ) {
 
 	$menu_option = get_option( 'ssc_member_logged_in_menu', false );
 
-	if ( !is_user_logged_in() || false === $menu_option ||  'primary' !== $args['theme_location'] ) {
+	if ( ! is_user_logged_in() || false === $menu_option || 'primary' !== $args['theme_location'] ) {
 		return $args;
 	}
 
 	$args['menu'] = $menu_option;
+
 	return $args;
 }
 

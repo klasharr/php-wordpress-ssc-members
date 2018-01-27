@@ -8,8 +8,8 @@
  * @param WP_Query $query
  */
 function ssc_member_exclude_private_posts( WP_Query $query ) {
-	
-	if ( is_user_logged_in() || !$query->is_main_query() ) {
+
+	if ( is_user_logged_in() || ! $query->is_main_query() ) {
 		return;
 	}
 
@@ -37,7 +37,7 @@ add_action( 'pre_get_posts', 'ssc_member_exclude_private_posts' );
  */
 function ssc_member_search_modifications( $args, $post_type ) {
 
-	if( 'member-page' !== $post_type || is_user_logged_in() ) {
+	if ( 'member-page' !== $post_type || is_user_logged_in() ) {
 		return $args;
 	}
 
@@ -49,17 +49,17 @@ function ssc_member_search_modifications( $args, $post_type ) {
 add_filter( 'register_post_type_args', 'ssc_member_search_modifications', 20, 2 );
 
 
-function ssc_member_get_nav_menus(){
+function ssc_member_get_nav_menus() {
 
-	if(version_compare(get_bloginfo('version'),'4.5.0', '>') ){
-		$terms = get_terms(array(
-			'taxonomy' => 'nav_menu',
+	if ( version_compare( get_bloginfo( 'version' ), '4.5.0', '>' ) ) {
+		$terms = get_terms( array(
+			'taxonomy'   => 'nav_menu',
 			'hide_empty' => false,
-		));
+		) );
 	} else {
-		$terms = get_terms('nav_menu', array(
+		$terms = get_terms( 'nav_menu', array(
 			'hide_empty' => false,
-		));
+		) );
 	}
 
 	return $terms;
@@ -67,22 +67,22 @@ function ssc_member_get_nav_menus(){
 }
 
 /**
- $args = array(
-	'sort_order' => 'asc',
-	'sort_column' => 'post_title',
-	'hierarchical' => 1,
-	'exclude' => '',
-	'include' => '',
-	'meta_key' => '',
-	'meta_value' => '',
-	'authors' => '',
-	'child_of' => 0,
-	'parent' => -1,
-	'exclude_tree' => '',
-	'number' => '',
-	'offset' => 0,
-	'post_type' => 'page',
-	'post_status' => 'publish'
-);
-$pages = get_pages($args);
+ * $args = array(
+ * 'sort_order' => 'asc',
+ * 'sort_column' => 'post_title',
+ * 'hierarchical' => 1,
+ * 'exclude' => '',
+ * 'include' => '',
+ * 'meta_key' => '',
+ * 'meta_value' => '',
+ * 'authors' => '',
+ * 'child_of' => 0,
+ * 'parent' => -1,
+ * 'exclude_tree' => '',
+ * 'number' => '',
+ * 'offset' => 0,
+ * 'post_type' => 'page',
+ * 'post_status' => 'publish'
+ * );
+ * $pages = get_pages($args);
  */
