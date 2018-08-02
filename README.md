@@ -28,7 +28,7 @@ pass: a
 
 ## Can I use it?
 
-Check out the GitHub issues and see if you want to use it. I will explore access restrictions based on role and capabilities which might change things a lot. It is however now in production on [http://www.swanagesailingclub.org.uk/](http://www.swanagesailingclub.org.uk/).
+Yes though check out the GitHub issues and see if you want to use it. I will explore access restrictions based on role and capabilities which might change things a lot. It is however now in production on [http://www.swanagesailingclub.org.uk/](http://www.swanagesailingclub.org.uk/).
 
 ## Can I request a feature?
 
@@ -36,5 +36,5 @@ Yes. Reach me at: [https://klaus.blog/contact/](https://klaus.blog/contact/) or 
 
 ## Tested up to
 
-Wordpress 4.9 Nov 2017
-Jetpack 5.7 Jan 2018
+Wordpress 4.9.8 August 2018
+Jetpack 6.3 August 2018
