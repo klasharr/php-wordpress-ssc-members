@@ -10,9 +10,8 @@
  Text Domain: ssc-members
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 define( 'SSC_MEMBERS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SSC_MEMBERS_PLUGIN_FILE', __FILE__ );
@@ -51,8 +50,8 @@ function ssc_member_handle_redirects() {
 	 *
 	 * @todo tidy, check
 	 */
-	if ( ! empty( $url_parts[1] ) && $url_parts[1] === SSC_MEMBERS_SLUG_BASE_SEGMENT ) {
-		wp_safe_redirect( wp_login_url() . '?mbo=1' );
+	if ( !empty($url_parts[1]) && $url_parts[1] === SSC_MEMBERS_SLUG_BASE_SEGMENT ) {
+		wp_safe_redirect( wp_login_url().'?mbo=1' );
 		exit();
 	}
 }
@@ -82,6 +81,9 @@ add_action( 'wp', 'ssc_member_admin_bar_visibility' );
  */
 function ssc_members_robots_override( $output ) {
 	$output .= sprintf( "Disallow: /%s/*\n", SSC_MEMBERS_SLUG_BASE_SEGMENT );
+    
+	$output .= sprintf( "Disallow: /whos-who/\n" );
+	$output .= sprintf( "Disallow: /wp-content/uploads/2017/09/KLaus_Harris.jpg\n" );
 
 	return $output;
 }
@@ -118,17 +120,14 @@ if ( ssc_member_is_redirect_to_login() ) {
 			esc_html__( 'You will need to login to see this content' ) );
 
 	}
-
 	add_filter( 'login_message', 'custom_login_message' );
 }
 
 /**
  * Doing nothing for now
  */
-function ssc_footer() {
-}
-
-add_action( 'wp_footer', 'ssc_footer' );
+function ssc_footer() {}
+add_action('wp_footer', 'ssc_footer');
 
 
 /**
@@ -142,10 +141,30 @@ add_action( 'wp_footer', 'ssc_footer' );
  */
 function ssc_login_message( $message ) {
 
-	if ( empty( $message ) ) {
+	if ( empty($message) ){
 		return sprintf(
-			"<p class='ssc_login_message'>%s <a href='http://www.swanagesailingclub.org.uk/contact/'>contact</a>.</p>",
-			esc_html__( "If you don't have the login details, please check the Members handbook or get in " )
+            "<div class='login-portal-message'>
+<h1>What do you want to do?</h1>
+<h2>1. Manage my club membership, including payments and berthing.</h2>
+            <p>Login to the <a style='font-size: large; font-weight: bold;' href='https://shop.swanagesailingclub.org.uk'>SSC Membership Management Portal</a>. </p><br/><p>Read more about the system <a href='https://www.swanagesailingclub.org.uk/2019/01/26/membership-renewals-due-1st-feb/'>here</a>. If you need help, first read <a href='https://www.swanagesailingclub.org.uk/2019/01/26/membership-renewals-due-1st-feb/'>these instructions</a> and if that fails, contact the <a href='mailto:swanagesailingclubmembership@gmail.com'>membership secretary.</a></p>
+            
+            
+            <h1>OR</h1>
+            
+            <h2>2. Manage my duties in Dutyman.</h2>
+            
+            <p>Visit <a href='https://dutyman.biz/dmmain.aspx?id=S0001470'>Dutyman</a> and login in with your personal Dutyman login.</p>
+            
+          
+            
+            <h1>OR</h1>
+             
+            <h2>3. Login to SSC website (to see members' files)</h2>
+            
+            
+
+<p class='ssc_login_medssage'>%s <a href='http://www.swanagesailingclub.org.uk/contact/'>contact</a> the webmaster.</p></div>",
+			esc_html__( "If you don't have the login details for the website, please check the Members handbook or get in " )
 		);
 	} else {
 		return $message;
@@ -190,13 +209,12 @@ function ssc_logout_redirect() {
 	wp_redirect( get_option( 'ssc_member_logout_url', '/' ) );
 	exit();
 }
-
-add_action( 'wp_logout', 'ssc_logout_redirect', PHP_INT_MAX );
+add_action('wp_logout', 'ssc_logout_redirect', PHP_INT_MAX);
 
 /**
  * @todo make image, logo url and bg colour come from settings
  */
-function ssc_login_form_css() {
+function ssc_login_form_css(){
 
 	echo '<style>
 		#login h1 a { 
@@ -213,7 +231,6 @@ function ssc_login_form_css() {
 		</style>' . "\n";
 
 }
-
 add_action( 'login_head', 'ssc_login_form_css' );
 
 
@@ -224,7 +241,6 @@ add_action( 'login_head', 'ssc_login_form_css' );
 function ssc_login_form_logo_url() {
 	return get_bloginfo( 'url' );
 }
-
 add_filter( 'login_headerurl', 'ssc_login_form_logo_url' );
 
 
